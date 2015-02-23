@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
-
+#import <FacebookSDK/FacebookSDK.h>
+@interface ViewController : UIViewController <FBLoginViewDelegate>
+@property UIStoryboard *profileStoryboard;
+//@property (weak, nonatomic) IBOutlet FBLoginView *loginButton;
+- (IBAction)fbSignIn:(id)sender;
 
 @end
 

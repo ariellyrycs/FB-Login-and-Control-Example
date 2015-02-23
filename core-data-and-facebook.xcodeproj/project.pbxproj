@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F01545FE25E5D6C221A8D00 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 022EC8B5A8FDB176F44DD44A /* libPods.a */; };
 		A6559F151A9AC4710086B8E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6559F141A9AC4710086B8E7 /* main.m */; };
 		A6559F181A9AC4710086B8E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6559F171A9AC4710086B8E7 /* AppDelegate.m */; };
 		A6559F1B1A9AC4710086B8E7 /* core_data_and_facebook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6559F191A9AC4710086B8E7 /* core_data_and_facebook.xcdatamodeld */; };
@@ -15,6 +16,9 @@
 		A6559F231A9AC4710086B8E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6559F221A9AC4710086B8E7 /* Images.xcassets */; };
 		A6559F261A9AC4710086B8E7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6559F241A9AC4710086B8E7 /* LaunchScreen.xib */; };
 		A6559F321A9AC4710086B8E7 /* core_data_and_facebookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6559F311A9AC4710086B8E7 /* core_data_and_facebookTests.m */; };
+		A6559F3D1A9AC73A0086B8E7 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A6559F3C1A9AC73A0086B8E7 /* UserModel.m */; };
+		A6559F411A9AC9110086B8E7 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6559F3F1A9AC9110086B8E7 /* UserProfileViewController.m */; };
+		A6559F461A9ACE260086B8E7 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6559F451A9ACE260086B8E7 /* UserProfile.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		022EC8B5A8FDB176F44DD44A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B83B23CB412712D9EAAE5F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		20427C5C0AC84ED13C0106EA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A6559F0F1A9AC4710086B8E7 /* core-data-and-facebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "core-data-and-facebook.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6559F131A9AC4710086B8E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6559F141A9AC4710086B8E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -42,6 +49,11 @@
 		A6559F2B1A9AC4710086B8E7 /* core-data-and-facebookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "core-data-and-facebookTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6559F301A9AC4710086B8E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6559F311A9AC4710086B8E7 /* core_data_and_facebookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = core_data_and_facebookTests.m; sourceTree = "<group>"; };
+		A6559F3B1A9AC73A0086B8E7 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		A6559F3C1A9AC73A0086B8E7 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		A6559F3E1A9AC9110086B8E7 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		A6559F3F1A9AC9110086B8E7 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		A6559F451A9ACE260086B8E7 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F01545FE25E5D6C221A8D00 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,12 +75,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C0AFFB4DD50E26A04879DD6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				20427C5C0AC84ED13C0106EA /* Pods.debug.xcconfig */,
+				13B83B23CB412712D9EAAE5F /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8D03549FECA9D2B25C95DBD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				022EC8B5A8FDB176F44DD44A /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A6559F061A9AC4710086B8E7 = {
 			isa = PBXGroup;
 			children = (
 				A6559F111A9AC4710086B8E7 /* core-data-and-facebook */,
 				A6559F2E1A9AC4710086B8E7 /* core-data-and-facebookTests */,
 				A6559F101A9AC4710086B8E7 /* Products */,
+				6C0AFFB4DD50E26A04879DD6 /* Pods */,
+				8D03549FECA9D2B25C95DBD9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,9 +120,14 @@
 				A6559F1C1A9AC4710086B8E7 /* ViewController.h */,
 				A6559F1D1A9AC4710086B8E7 /* ViewController.m */,
 				A6559F1F1A9AC4710086B8E7 /* Main.storyboard */,
+				A6559F3E1A9AC9110086B8E7 /* UserProfileViewController.h */,
+				A6559F3F1A9AC9110086B8E7 /* UserProfileViewController.m */,
+				A6559F451A9ACE260086B8E7 /* UserProfile.storyboard */,
 				A6559F221A9AC4710086B8E7 /* Images.xcassets */,
 				A6559F241A9AC4710086B8E7 /* LaunchScreen.xib */,
 				A6559F191A9AC4710086B8E7 /* core_data_and_facebook.xcdatamodeld */,
+				A6559F3B1A9AC73A0086B8E7 /* UserModel.h */,
+				A6559F3C1A9AC73A0086B8E7 /* UserModel.m */,
 				A6559F121A9AC4710086B8E7 /* Supporting Files */,
 			);
 			path = "core-data-and-facebook";
@@ -129,9 +166,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A6559F351A9AC4720086B8E7 /* Build configuration list for PBXNativeTarget "core-data-and-facebook" */;
 			buildPhases = (
+				90D479ADC248C2233B08749B /* Check Pods Manifest.lock */,
 				A6559F0B1A9AC4710086B8E7 /* Sources */,
 				A6559F0C1A9AC4710086B8E7 /* Frameworks */,
 				A6559F0D1A9AC4710086B8E7 /* Resources */,
+				A46B045383A43105373DC122 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -203,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6559F211A9AC4710086B8E7 /* Main.storyboard in Resources */,
+				A6559F461A9ACE260086B8E7 /* UserProfile.storyboard in Resources */,
 				A6559F261A9AC4710086B8E7 /* LaunchScreen.xib in Resources */,
 				A6559F231A9AC4710086B8E7 /* Images.xcassets in Resources */,
 			);
@@ -217,6 +257,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		90D479ADC248C2233B08749B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A46B045383A43105373DC122 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A6559F0B1A9AC4710086B8E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -225,6 +298,8 @@
 				A6559F181A9AC4710086B8E7 /* AppDelegate.m in Sources */,
 				A6559F151A9AC4710086B8E7 /* main.m in Sources */,
 				A6559F1E1A9AC4710086B8E7 /* ViewController.m in Sources */,
+				A6559F411A9AC9110086B8E7 /* UserProfileViewController.m in Sources */,
+				A6559F3D1A9AC73A0086B8E7 /* UserModel.m in Sources */,
 				A6559F1B1A9AC4710086B8E7 /* core_data_and_facebook.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +420,7 @@
 		};
 		A6559F361A9AC4720086B8E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20427C5C0AC84ED13C0106EA /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "core-data-and-facebook/Info.plist";
@@ -355,6 +431,7 @@
 		};
 		A6559F371A9AC4720086B8E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13B83B23CB412712D9EAAE5F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "core-data-and-facebook/Info.plist";
@@ -416,6 +493,7 @@
 				A6559F371A9AC4720086B8E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A6559F381A9AC4720086B8E7 /* Build configuration list for PBXNativeTarget "core-data-and-facebookTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +502,7 @@
 				A6559F3A1A9AC4720086B8E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
