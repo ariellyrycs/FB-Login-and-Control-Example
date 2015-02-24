@@ -8,9 +8,12 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "UserProfileViewController.h"
+#import "LoginViewController.h"
+#import "UserModel.h"
 
 @interface AppDelegate ()
-
+- (BOOL) checkSessionExpiration;
 @end
 
 @implementation AppDelegate
@@ -18,9 +21,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [FBLoginView class];
     [FBProfilePictureView class];
-    
+    if ([self checkSessionExpiration]) {
+        UserProfileViewController *profileViewController = [[UIStoryboard storyboardWithName:@"UserProfile" bundle:nil] instantiateViewControllerWithIdentifier:@"profileViewController"];
+        self.window.rootViewController = profileViewController;
+    }
     return YES;
 }
 
@@ -82,9 +87,11 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"core_data_and_facebook.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"database.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
+    
+    
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -132,4 +139,20 @@
     }
 }
 
+- (BOOL) checkSessionExpiration {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"UserModel" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    if(!error && fetchedObjects.count != 0 ) {
+        UserModel *managedObject = [fetchedObjects objectAtIndex:0];
+        LoginViewController *objectOfYourCustomClass = [LoginViewController new];
+        return [[NSString stringWithFormat:@"%@", [objectOfYourCustomClass getToken]] isEqualToString: [NSString stringWithFormat:@"%@", managedObject.accessToken]];
+    } else {
+        NSLog(@"there isn't information to show");
+        return NO;
+    }
+}
 @end

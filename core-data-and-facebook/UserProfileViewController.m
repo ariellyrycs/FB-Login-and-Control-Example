@@ -9,33 +9,42 @@
 #import "UserProfileViewController.h"
 #import "UserModel.h"
 #import "AppDelegate.h"
+#import "LoginViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface UserProfileViewController ()
-
+@interface UserProfileViewController () <FBLoginViewDelegate>
+@property (weak, nonatomic) IBOutlet FBProfilePictureView *userImage;
+@property (weak, nonatomic) IBOutlet UILabel *firstNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lastNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *genderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tokenLabel;
+@property (weak, nonatomic) IBOutlet UILabel *idProfileLabel;
+- (IBAction)signOut:(id)sender;
+- (void) showInfo;
+- (void)saveContext;
+- (void) deleteCurrentUserInfo;
+- (id)getCurrentUser;
 @end
-
-static NSString *client_id = @"716336528479611";
-static NSString *client_secret = @"45c9fbbad777dc381a8c2cfe9017ebf9";
 
 @implementation UserProfileViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self getInfo];
+    [self showInfo];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
 }
 
-
 - (IBAction)signOut:(id)sender {
     NSLog(@"You're logged out");
+    [self deleteCurrentUserInfo];
     [FBSession.activeSession closeAndClearTokenInformation];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UserProfileViewController *profileViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+    LoginViewController *profileViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
     
     [self presentViewController:profileViewController animated:YES completion:nil];
 }
@@ -44,73 +53,49 @@ static NSString *client_secret = @"45c9fbbad777dc381a8c2cfe9017ebf9";
     return [(AppDelegate *) [[UIApplication sharedApplication] delegate] managedObjectContext];
 }
 
--(void)getInfo {
-    [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
-        if (!error) {
-            
-            NSManagedObjectContext *context = [self managedObjectContext];
-            UserModel *newList = [NSEntityDescription insertNewObjectForEntityForName:@"UserData" inManagedObjectContext:context];
-            NSLog(@"%@", user[@"first_name"]);
-            newList.firstName = user[@"first_name"];
-            newList.lastName = user[@"last_name"];
-            newList.name = user[@"name"];
-            newList.gender = user[@"gender"];
-            newList.accessToken = [self getToken];
-            newList.idProfile = user[@"id"];
-            self.fName = user[@"first_name"];
-            self.lName = user[@"last_name"];
-            self.fullName = user[@"name"];
-            self.gender = user[@"gender"];
-            self.token = [self getToken];
-            self.idProfile = user[@"id"];
-            [self setUIInfo];
-            [self showInfo];
-        }
-    }];
-}
 
-- (void) setUIInfo {
-    _firstNameLabel.text = _fName;
-    _lastNameLabel.text = _lName;
-    _nameLabel.text = _fullName;
-    _genderLabel.text = _gender;
-    _tokenLabel.text = _token;
-    _idProfileLabel.text = _idProfile;
-    _userImage.profileID = _idProfile;
-
+-(id)getCurrentUser {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"UserModel" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    
+    NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+    
+    if (error) {
+        NSLog(@"Error %@", error);
+        return nil;
+    }
+    
+    return [results objectAtIndex:0];
 }
 
 - (void) showInfo {
-    // Test listing all FailedBankInfos from the store
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"UserData" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    if(!error) {
-        for (UserModel *info in fetchedObjects) {
-            NSLog(@"Name: %@", info.firstName);
-            NSLog(@"Name: %@", info.lastName);
-            NSLog(@"Name: %@", info.name);
-            NSLog(@"Name: %@", info.gender);
-            NSLog(@"Name: %@", info.accessToken);
-            NSLog(@"Name: %@", info.idProfile);
-        }
-    } else {
-        NSLog(@"there isn't information to show");
-    }
-    
+    UserModel *managedObject = self.getCurrentUser;
+    self.firstNameLabel.text = managedObject.firstName;
+    self.lastNameLabel.text = managedObject.lastName;
+    self.nameLabel.text = managedObject.name;
+    self.genderLabel.text = managedObject.gender;
+    self.tokenLabel.text= managedObject.accessToken;
+    self.idProfileLabel.text = self.userImage.profileID = managedObject.idProfile;
+    [self saveContext];
 }
 
-- (NSString*) getToken {
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/oauth/access_token?grant_type=client_credentials&client_id=%@&client_secret=%@", client_id, client_secret]];
-    NSError* error = nil;
-    NSString * fullToken = [NSString stringWithContentsOfURL:url encoding:NSASCIIStringEncoding error:&error];
-    NSArray *components = [fullToken componentsSeparatedByString:@"="];
-    NSString *token = [components objectAtIndex:1];
-    return token;
+- (void) deleteCurrentUserInfo {
+    NSManagedObject *managedObject = self.getCurrentUser;
+    [[self managedObjectContext] deleteObject:managedObject];
+    [self saveContext];
 }
+
+- (void)saveContext{
+    NSError *error;
+    if(![[self managedObjectContext] save:&error]){
+        NSLog(@"Error %@",error);
+    }
+}
+
+
 
 #pragma mark - FBLoginViewDelegate
 /*
